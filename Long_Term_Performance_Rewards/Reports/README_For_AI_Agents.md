@@ -1,0 +1,491 @@
+# NBA Long-Term Performance Rewards Reports
+
+These files identify NBA teams that may qualify for long-term rewards or penalties based on sustained performance patterns.
+
+## How To Read The Reports
+
+- Streak reports require consecutive qualifying seasons and use non-overlapping streak chunks.
+- Window reports require a configured number of qualifying seasons inside a configured inclusive year span.
+- Team names are normalized with `Data/team_mapping.csv` before reports are created.
+- `Report_Manifest.json` is the most complete machine-readable description of the outputs.
+- `Report_Data_Dictionary.csv` defines the columns used across reports.
+
+## Report Inventory
+
+### Output_Playoff_Streaks.csv
+- Category: Reward
+- Subject: Playoff appearances
+- Criteria: Playoff appearances: at least 8 consecutive qualifying seasons. Streak results are non-overlapping.
+- Rows: 37
+- Unique teams: 20
+- Interpretation: These teams may qualify for a long-term performance reward based on sustained playoff participation.
+
+Qualifying teams and instances:
+- Atlanta Hawks: 1963-1970
+- Atlanta Hawks: 2008-2015
+- Boston Celtics: 1960-1967
+- Boston Celtics: 1980-1987
+- Boston Celtics: 2015-2022
+- Chicago Bulls: 1985-1992
+- Dallas Mavericks: 2001-2008
+- Denver Nuggets: 1982-1989
+- Denver Nuggets: 2004-2011
+- Detroit Pistons: 1984-1991
+- Detroit Pistons: 2002-2009
+- Houston Rockets: 2013-2020
+- Indiana Pacers: 1998-2005
+- Los Angeles Lakers: 1960-1967
+- Los Angeles Lakers: 1977-1984
+- Los Angeles Lakers: 1985-1992
+- Los Angeles Lakers: 1995-2002
+- Los Angeles Lakers: 2006-2013
+- Milwaukee Bucks: 1980-1987
+- Milwaukee Bucks: 2017-2024
+- Minnesota Timberwolves: 1997-2004
+- New York Knicks: 1967-1974
+- New York Knicks: 1988-1995
+- Oklahoma City Thunder: 1991-1998
+- Philadelphia 76ers: 1960-1967
+- Philadelphia 76ers: 1976-1983
+- Phoenix Suns: 1978-1985
+- Phoenix Suns: 1989-1996
+- Portland Trail Blazers: 1983-1990
+- Portland Trail Blazers: 1991-1998
+- Portland Trail Blazers: 2014-2021
+- Sacramento Kings: 1999-2006
+- San Antonio Spurs: 1998-2005
+- San Antonio Spurs: 2006-2013
+- Utah Jazz: 1984-1991
+- Utah Jazz: 1992-1999
+- Washington Wizards: 1969-1976
+
+### Output_Playoff_Windows.csv
+- Category: Reward
+- Subject: Playoff appearances
+- Criteria: Playoff appearances: at least 8 qualifying seasons within 10 inclusive years. Window results are non-overlapping.
+- Rows: 65
+- Unique teams: 27
+- Interpretation: These teams may qualify for a long-term performance reward based on repeated playoff participation within a broader window.
+
+Qualifying teams and instances:
+- Atlanta Hawks: 1960-1968; count=8; years=[1960, 1961, 1963, 1964, 1965, 1966, 1967, 1968]
+- Atlanta Hawks: 1978-1987; count=8; years=[1978, 1979, 1980, 1982, 1983, 1984, 1986, 1987]
+- Atlanta Hawks: 1988-1997; count=8; years=[1988, 1989, 1991, 1993, 1994, 1995, 1996, 1997]
+- Atlanta Hawks: 2008-2015; count=8; years=[2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015]
+- Boston Celtics: 1960-1967; count=8; years=[1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967]
+- Boston Celtics: 1968-1977; count=8; years=[1968, 1969, 1972, 1973, 1974, 1975, 1976, 1977]
+- Boston Celtics: 1980-1987; count=8; years=[1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987]
+- Boston Celtics: 2002-2011; count=8; years=[2002, 2003, 2004, 2005, 2008, 2009, 2010, 2011]
+- Boston Celtics: 2012-2020; count=8; years=[2012, 2013, 2015, 2016, 2017, 2018, 2019, 2020]
+- Chicago Bulls: 1967-1975; count=8; years=[1967, 1968, 1970, 1971, 1972, 1973, 1974, 1975]
+- Chicago Bulls: 1985-1992; count=8; years=[1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992]
+- Chicago Bulls: 2005-2013; count=8; years=[2005, 2006, 2007, 2009, 2010, 2011, 2012, 2013]
+- Cleveland Cavaliers: 1988-1996; count=8; years=[1988, 1989, 1990, 1992, 1993, 1994, 1995, 1996]
+- Dallas Mavericks: 2001-2008; count=8; years=[2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008]
+- Denver Nuggets: 1977-1986; count=8; years=[1977, 1978, 1979, 1982, 1983, 1984, 1985, 1986]
+- Denver Nuggets: 2004-2011; count=8; years=[2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011]
+- Detroit Pistons: 1984-1991; count=8; years=[1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991]
+- Detroit Pistons: 1996-2005; count=8; years=[1996, 1997, 1999, 2000, 2002, 2003, 2004, 2005]
+- Golden State Warriors: 1967-1976; count=8; years=[1967, 1968, 1969, 1971, 1972, 1973, 1975, 1976]
+- Golden State Warriors: 2013-2022; count=8; years=[2013, 2014, 2015, 2016, 2017, 2018, 2019, 2022]
+- Houston Rockets: 1979-1988; count=8; years=[1979, 1980, 1981, 1982, 1985, 1986, 1987, 1988]
+- Houston Rockets: 1989-1997; count=8; years=[1989, 1990, 1991, 1993, 1994, 1995, 1996, 1997]
+- Houston Rockets: 2013-2020; count=8; years=[2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020]
+- Indiana Pacers: 1987-1996; count=8; years=[1987, 1990, 1991, 1992, 1993, 1994, 1995, 1996]
+- Indiana Pacers: 1998-2005; count=8; years=[1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005]
+- Indiana Pacers: 2011-2019; count=8; years=[2011, 2012, 2013, 2014, 2016, 2017, 2018, 2019]
+- Los Angeles Clippers: 2012-2020; count=8; years=[2012, 2013, 2014, 2015, 2016, 2017, 2019, 2020]
+- Los Angeles Lakers: 1960-1967; count=8; years=[1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967]
+- Los Angeles Lakers: 1968-1977; count=8; years=[1968, 1969, 1970, 1971, 1972, 1973, 1974, 1977]
+- Los Angeles Lakers: 1978-1985; count=8; years=[1978, 1979, 1980, 1981, 1982, 1983, 1984, 1985]
+- Los Angeles Lakers: 1986-1993; count=8; years=[1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993]
+- Los Angeles Lakers: 1995-2002; count=8; years=[1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002]
+- Los Angeles Lakers: 2003-2011; count=8; years=[2003, 2004, 2006, 2007, 2008, 2009, 2010, 2011]
+- Miami Heat: 1992-2001; count=8; years=[1992, 1994, 1996, 1997, 1998, 1999, 2000, 2001]
+- Miami Heat: 2004-2012; count=8; years=[2004, 2005, 2006, 2007, 2009, 2010, 2011, 2012]
+- Miami Heat: 2016-2025; count=8; years=[2016, 2018, 2020, 2021, 2022, 2023, 2024, 2025]
+- Milwaukee Bucks: 1976-1985; count=8; years=[1976, 1978, 1980, 1981, 1982, 1983, 1984, 1985]
+- Milwaukee Bucks: 2013-2022; count=8; years=[2013, 2015, 2017, 2018, 2019, 2020, 2021, 2022]
+- Minnesota Timberwolves: 1997-2004; count=8; years=[1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004]
+- New Orleans Pelicans: 1995-2004; count=8; years=[1995, 1997, 1998, 2000, 2001, 2002, 2003, 2004]
+- New York Knicks: 1967-1974; count=8; years=[1967, 1968, 1969, 1970, 1971, 1972, 1973, 1974]
+- New York Knicks: 1988-1995; count=8; years=[1988, 1989, 1990, 1991, 1992, 1993, 1994, 1995]
+- Oklahoma City Thunder: 1975-1984; count=8; years=[1975, 1976, 1978, 1979, 1980, 1982, 1983, 1984]
+- Oklahoma City Thunder: 1987-1995; count=8; years=[1987, 1988, 1989, 1991, 1992, 1993, 1994, 1995]
+- Oklahoma City Thunder: 2010-2018; count=8; years=[2010, 2011, 2012, 2013, 2014, 2016, 2017, 2018]
+- Orlando Magic: 1994-2003; count=8; years=[1994, 1995, 1996, 1997, 1999, 2001, 2002, 2003]
+- Philadelphia 76ers: 1960-1967; count=8; years=[1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967]
+- Philadelphia 76ers: 1976-1983; count=8; years=[1976, 1977, 1978, 1979, 1980, 1981, 1982, 1983]
+- Phoenix Suns: 1976-1984; count=8; years=[1976, 1978, 1979, 1980, 1981, 1982, 1983, 1984]
+- Phoenix Suns: 1989-1996; count=8; years=[1989, 1990, 1991, 1992, 1993, 1994, 1995, 1996]
+- Phoenix Suns: 1997-2006; count=8; years=[1997, 1998, 1999, 2000, 2001, 2003, 2005, 2006]
+- Portland Trail Blazers: 1977-1985; count=8; years=[1977, 1978, 1979, 1980, 1981, 1983, 1984, 1985]
+- Portland Trail Blazers: 1986-1993; count=8; years=[1986, 1987, 1988, 1989, 1990, 1991, 1992, 1993]
+- Portland Trail Blazers: 1994-2001; count=8; years=[1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001]
+- Portland Trail Blazers: 2009-2018; count=8; years=[2009, 2010, 2011, 2014, 2015, 2016, 2017, 2018]
+- Sacramento Kings: 1996-2005; count=8; years=[1996, 1999, 2000, 2001, 2002, 2003, 2004, 2005]
+- San Antonio Spurs: 1977-1985; count=8; years=[1977, 1978, 1979, 1980, 1981, 1982, 1983, 1985]
+- San Antonio Spurs: 1986-1995; count=8; years=[1986, 1988, 1990, 1991, 1992, 1993, 1994, 1995]
+- San Antonio Spurs: 1996-2004; count=8; years=[1996, 1998, 1999, 2000, 2001, 2002, 2003, 2004]
+- San Antonio Spurs: 2005-2012; count=8; years=[2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012]
+- Toronto Raptors: 2014-2022; count=8; years=[2014, 2015, 2016, 2017, 2018, 2019, 2020, 2022]
+- Utah Jazz: 1984-1991; count=8; years=[1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991]
+- Utah Jazz: 1992-1999; count=8; years=[1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+- Washington Wizards: 1965-1974; count=8; years=[1965, 1966, 1969, 1970, 1971, 1972, 1973, 1974]
+- Washington Wizards: 1975-1984; count=8; years=[1975, 1976, 1977, 1978, 1979, 1980, 1982, 1984]
+
+### Output_Championship_Streaks.csv
+- Category: Reward
+- Subject: NBA championships
+- Criteria: NBA championships: at least 3 consecutive qualifying seasons. Streak results are non-overlapping.
+- Rows: 5
+- Unique teams: 3
+- Interpretation: These teams may qualify for the strongest long-term performance reward based on consecutive championships.
+
+Qualifying teams and instances:
+- Boston Celtics: 1960-1962
+- Boston Celtics: 1963-1965
+- Chicago Bulls: 1991-1993
+- Chicago Bulls: 1996-1998
+- Los Angeles Lakers: 2000-2002
+
+### Output_Championship_Windows.csv
+- Category: Reward
+- Subject: NBA championships
+- Criteria: NBA championships: at least 3 qualifying seasons within 5 inclusive years. Window results are non-overlapping.
+- Rows: 9
+- Unique teams: 5
+- Interpretation: These teams may qualify for a long-term performance reward based on multiple championships in a compact period.
+
+Qualifying teams and instances:
+- Boston Celtics: 1960-1962; count=3; years=[1960, 1961, 1962]
+- Boston Celtics: 1963-1965; count=3; years=[1963, 1964, 1965]
+- Boston Celtics: 1966-1969; count=3; years=[1966, 1968, 1969]
+- Chicago Bulls: 1991-1993; count=3; years=[1991, 1992, 1993]
+- Chicago Bulls: 1996-1998; count=3; years=[1996, 1997, 1998]
+- Golden State Warriors: 2015-2018; count=3; years=[2015, 2017, 2018]
+- Los Angeles Lakers: 1985-1988; count=3; years=[1985, 1987, 1988]
+- Los Angeles Lakers: 2000-2002; count=3; years=[2000, 2001, 2002]
+- San Antonio Spurs: 2003-2007; count=3; years=[2003, 2005, 2007]
+
+### Output_Conference_Championship_Streaks.csv
+- Category: Reward
+- Subject: Conference championships
+- Criteria: Conference championships: at least 4 consecutive qualifying seasons. Streak results are non-overlapping.
+- Rows: 6
+- Unique teams: 5
+- Interpretation: These teams may qualify for a reward based on repeated Finals appearances.
+
+Qualifying teams and instances:
+- Boston Celtics: 1960-1963
+- Boston Celtics: 1984-1987
+- Cleveland Cavaliers: 2015-2018
+- Golden State Warriors: 2015-2018
+- Los Angeles Lakers: 1982-1985
+- Miami Heat: 2011-2014
+
+### Output_Conference_Championship_Windows.csv
+- Category: Reward
+- Subject: Conference championships
+- Criteria: Conference championships: at least 4 qualifying seasons within 6 inclusive years. Window results are non-overlapping.
+- Rows: 12
+- Unique teams: 6
+- Interpretation: These teams may qualify for a reward based on repeated deep playoff success within a broader period.
+
+Qualifying teams and instances:
+- Boston Celtics: 1960-1963; count=4; years=[1960, 1961, 1962, 1963]
+- Boston Celtics: 1964-1968; count=4; years=[1964, 1965, 1966, 1968]
+- Boston Celtics: 1981-1986; count=4; years=[1981, 1984, 1985, 1986]
+- Chicago Bulls: 1991-1996; count=4; years=[1991, 1992, 1993, 1996]
+- Cleveland Cavaliers: 2015-2018; count=4; years=[2015, 2016, 2017, 2018]
+- Golden State Warriors: 2015-2018; count=4; years=[2015, 2016, 2017, 2018]
+- Los Angeles Lakers: 1962-1966; count=4; years=[1962, 1963, 1965, 1966]
+- Los Angeles Lakers: 1968-1972; count=4; years=[1968, 1969, 1970, 1972]
+- Los Angeles Lakers: 1980-1984; count=4; years=[1980, 1982, 1983, 1984]
+- Los Angeles Lakers: 1985-1989; count=4; years=[1985, 1987, 1988, 1989]
+- Los Angeles Lakers: 2000-2004; count=4; years=[2000, 2001, 2002, 2004]
+- Miami Heat: 2011-2014; count=4; years=[2011, 2012, 2013, 2014]
+
+### Output_Non_Playoff_Streaks.csv
+- Category: Penalty
+- Subject: Missed playoffs
+- Criteria: Missed playoffs: at least 5 consecutive qualifying seasons. Streak results are non-overlapping.
+- Rows: 58
+- Unique teams: 28
+- Interpretation: These teams may qualify for a long-term performance penalty based on sustained non-playoff results.
+
+Qualifying teams and instances:
+- Atlanta Hawks: 2000-2004
+- Boston Celtics: 1996-2000
+- Brooklyn Nets: 1987-1991
+- Brooklyn Nets: 2008-2012
+- Charlotte Hornets: 2005-2009
+- Charlotte Hornets: 2017-2021
+- Chicago Bulls: 1999-2003
+- Cleveland Cavaliers: 1971-1975
+- Cleveland Cavaliers: 1979-1983
+- Cleveland Cavaliers: 1999-2003
+- Dallas Mavericks: 1991-1995
+- Dallas Mavericks: 1996-2000
+- Denver Nuggets: 1996-2000
+- Denver Nuggets: 2014-2018
+- Detroit Pistons: 1969-1973
+- Detroit Pistons: 1978-1982
+- Detroit Pistons: 2010-2014
+- Detroit Pistons: 2020-2024
+- Golden State Warriors: 1978-1982
+- Golden State Warriors: 1995-1999
+- Golden State Warriors: 2000-2004
+- Golden State Warriors: 2008-2012
+- Houston Rockets: 1970-1974
+- Indiana Pacers: 1982-1986
+- Los Angeles Clippers: 1977-1981
+- Los Angeles Clippers: 1982-1986
+- Los Angeles Clippers: 1987-1991
+- Los Angeles Clippers: 1998-2002
+- Los Angeles Clippers: 2007-2011
+- Los Angeles Lakers: 2014-2018
+- Memphis Grizzlies: 1996-2000
+- Milwaukee Bucks: 1992-1996
+- Minnesota Timberwolves: 1990-1994
+- Minnesota Timberwolves: 2005-2009
+- Minnesota Timberwolves: 2010-2014
+- New York Knicks: 1960-1964
+- New York Knicks: 2005-2009
+- New York Knicks: 2014-2018
+- Oklahoma City Thunder: 1968-1972
+- Orlando Magic: 2013-2017
+- Philadelphia 76ers: 1992-1996
+- Philadelphia 76ers: 2013-2017
+- Phoenix Suns: 1971-1975
+- Phoenix Suns: 2011-2015
+- Phoenix Suns: 2016-2020
+- Portland Trail Blazers: 1971-1975
+- Portland Trail Blazers: 2004-2008
+- Sacramento Kings: 1968-1972
+- Sacramento Kings: 1987-1991
+- Sacramento Kings: 2007-2011
+- Sacramento Kings: 2012-2016
+- Sacramento Kings: 2017-2021
+- San Antonio Spurs: 2020-2024
+- Toronto Raptors: 2009-2013
+- Utah Jazz: 1975-1979
+- Washington Wizards: 1989-1993
+- Washington Wizards: 1998-2002
+- Washington Wizards: 2009-2013
+
+### Output_Non_Playoff_Windows.csv
+- Category: Penalty
+- Subject: Missed playoffs
+- Criteria: Missed playoffs: at least 5 qualifying seasons within 7 inclusive years. Window results are non-overlapping.
+- Rows: 80
+- Unique teams: 30
+- Interpretation: These teams may qualify for a penalty based on repeated missed playoffs within a broader period.
+
+Qualifying teams and instances:
+- Atlanta Hawks: 2000-2004; count=5; years=[2000, 2001, 2002, 2003, 2004]
+- Boston Celtics: 1994-1999; count=5; years=[1994, 1996, 1997, 1998, 1999]
+- Brooklyn Nets: 1987-1991; count=5; years=[1987, 1988, 1989, 1990, 1991]
+- Brooklyn Nets: 1995-2000; count=5; years=[1995, 1996, 1997, 1999, 2000]
+- Brooklyn Nets: 2008-2012; count=5; years=[2008, 2009, 2010, 2011, 2012]
+- Charlotte Hornets: 2005-2009; count=5; years=[2005, 2006, 2007, 2008, 2009]
+- Charlotte Hornets: 2011-2017; count=5; years=[2011, 2012, 2013, 2015, 2017]
+- Charlotte Hornets: 2018-2022; count=5; years=[2018, 2019, 2020, 2021, 2022]
+- Chicago Bulls: 1976-1982; count=5; years=[1976, 1978, 1979, 1980, 1982]
+- Chicago Bulls: 1999-2003; count=5; years=[1999, 2000, 2001, 2002, 2003]
+- Chicago Bulls: 2016-2021; count=5; years=[2016, 2018, 2019, 2020, 2021]
+- Cleveland Cavaliers: 1971-1975; count=5; years=[1971, 1972, 1973, 1974, 1975]
+- Cleveland Cavaliers: 1979-1983; count=5; years=[1979, 1980, 1981, 1982, 1983]
+- Cleveland Cavaliers: 1997-2002; count=5; years=[1997, 1999, 2000, 2001, 2002]
+- Dallas Mavericks: 1989-1994; count=5; years=[1989, 1991, 1992, 1993, 1994]
+- Dallas Mavericks: 1995-1999; count=5; years=[1995, 1996, 1997, 1998, 1999]
+- Denver Nuggets: 1991-1997; count=5; years=[1991, 1992, 1993, 1996, 1997]
+- Denver Nuggets: 1998-2002; count=5; years=[1998, 1999, 2000, 2001, 2002]
+- Denver Nuggets: 2014-2018; count=5; years=[2014, 2015, 2016, 2017, 2018]
+- Detroit Pistons: 1964-1969; count=5; years=[1964, 1965, 1966, 1967, 1969]
+- Detroit Pistons: 1978-1982; count=5; years=[1978, 1979, 1980, 1981, 1982]
+- Detroit Pistons: 2010-2014; count=5; years=[2010, 2011, 2012, 2013, 2014]
+- Detroit Pistons: 2015-2021; count=5; years=[2015, 2017, 2018, 2020, 2021]
+- Golden State Warriors: 1978-1982; count=5; years=[1978, 1979, 1980, 1981, 1982]
+- Golden State Warriors: 1983-1988; count=5; years=[1983, 1984, 1985, 1986, 1988]
+- Golden State Warriors: 1993-1998; count=5; years=[1993, 1995, 1996, 1997, 1998]
+- Golden State Warriors: 1999-2003; count=5; years=[1999, 2000, 2001, 2002, 2003]
+- Golden State Warriors: 2004-2009; count=5; years=[2004, 2005, 2006, 2008, 2009]
+- Houston Rockets: 1968-1973; count=5; years=[1968, 1970, 1971, 1972, 1973]
+- Houston Rockets: 2000-2006; count=5; years=[2000, 2001, 2002, 2003, 2006]
+- Indiana Pacers: 1977-1982; count=5; years=[1977, 1978, 1979, 1980, 1982]
+- Indiana Pacers: 1983-1988; count=5; years=[1983, 1984, 1985, 1986, 1988]
+- Los Angeles Clippers: 1977-1981; count=5; years=[1977, 1978, 1979, 1980, 1981]
+- Los Angeles Clippers: 1982-1986; count=5; years=[1982, 1983, 1984, 1985, 1986]
+- Los Angeles Clippers: 1987-1991; count=5; years=[1987, 1988, 1989, 1990, 1991]
+- Los Angeles Clippers: 1994-1999; count=5; years=[1994, 1995, 1996, 1998, 1999]
+- Los Angeles Clippers: 2000-2004; count=5; years=[2000, 2001, 2002, 2003, 2004]
+- Los Angeles Clippers: 2005-2010; count=5; years=[2005, 2007, 2008, 2009, 2010]
+- Los Angeles Lakers: 2014-2018; count=5; years=[2014, 2015, 2016, 2017, 2018]
+- Memphis Grizzlies: 1996-2000; count=5; years=[1996, 1997, 1998, 1999, 2000]
+- Miami Heat: 1989-1995; count=5; years=[1989, 1990, 1991, 1993, 1995]
+- Milwaukee Bucks: 1992-1996; count=5; years=[1992, 1993, 1994, 1995, 1996]
+- Milwaukee Bucks: 2005-2011; count=5; years=[2005, 2007, 2008, 2009, 2011]
+- Minnesota Timberwolves: 1990-1994; count=5; years=[1990, 1991, 1992, 1993, 1994]
+- Minnesota Timberwolves: 2005-2009; count=5; years=[2005, 2006, 2007, 2008, 2009]
+- Minnesota Timberwolves: 2010-2014; count=5; years=[2010, 2011, 2012, 2013, 2014]
+- Minnesota Timberwolves: 2015-2020; count=5; years=[2015, 2016, 2017, 2019, 2020]
+- New Orleans Pelicans: 1989-1994; count=5; years=[1989, 1990, 1991, 1992, 1994]
+- New Orleans Pelicans: 2010-2016; count=5; years=[2010, 2012, 2013, 2014, 2016]
+- New York Knicks: 1960-1964; count=5; years=[1960, 1961, 1962, 1963, 1964]
+- New York Knicks: 1976-1982; count=5; years=[1976, 1977, 1979, 1980, 1982]
+- New York Knicks: 2002-2007; count=5; years=[2002, 2003, 2005, 2006, 2007]
+- New York Knicks: 2014-2018; count=5; years=[2014, 2015, 2016, 2017, 2018]
+- Oklahoma City Thunder: 1968-1972; count=5; years=[1968, 1969, 1970, 1971, 1972]
+- Oklahoma City Thunder: 2001-2007; count=5; years=[2001, 2003, 2004, 2006, 2007]
+- Orlando Magic: 2013-2017; count=5; years=[2013, 2014, 2015, 2016, 2017]
+- Philadelphia 76ers: 1992-1996; count=5; years=[1992, 1993, 1994, 1995, 1996]
+- Philadelphia 76ers: 2010-2016; count=5; years=[2010, 2013, 2014, 2015, 2016]
+- Phoenix Suns: 1969-1974; count=5; years=[1969, 1971, 1972, 1973, 1974]
+- Phoenix Suns: 2009-2014; count=5; years=[2009, 2011, 2012, 2013, 2014]
+- Phoenix Suns: 2015-2019; count=5; years=[2015, 2016, 2017, 2018, 2019]
+- Portland Trail Blazers: 1971-1975; count=5; years=[1971, 1972, 1973, 1974, 1975]
+- Portland Trail Blazers: 2004-2008; count=5; years=[2004, 2005, 2006, 2007, 2008]
+- Sacramento Kings: 1968-1972; count=5; years=[1968, 1969, 1970, 1971, 1972]
+- Sacramento Kings: 1973-1978; count=5; years=[1973, 1974, 1976, 1977, 1978]
+- Sacramento Kings: 1982-1988; count=5; years=[1982, 1983, 1985, 1987, 1988]
+- Sacramento Kings: 1989-1993; count=5; years=[1989, 1990, 1991, 1992, 1993]
+- Sacramento Kings: 2007-2011; count=5; years=[2007, 2008, 2009, 2010, 2011]
+- Sacramento Kings: 2012-2016; count=5; years=[2012, 2013, 2014, 2015, 2016]
+- Sacramento Kings: 2017-2021; count=5; years=[2017, 2018, 2019, 2020, 2021]
+- San Antonio Spurs: 2020-2024; count=5; years=[2020, 2021, 2022, 2023, 2024]
+- Toronto Raptors: 2003-2009; count=5; years=[2003, 2004, 2005, 2006, 2009]
+- Utah Jazz: 1975-1979; count=5; years=[1975, 1976, 1977, 1978, 1979]
+- Utah Jazz: 2011-2016; count=5; years=[2011, 2013, 2014, 2015, 2016]
+- Washington Wizards: 1962-1968; count=5; years=[1962, 1963, 1964, 1967, 1968]
+- Washington Wizards: 1989-1993; count=5; years=[1989, 1990, 1991, 1992, 1993]
+- Washington Wizards: 1994-1999; count=5; years=[1994, 1995, 1996, 1998, 1999]
+- Washington Wizards: 2000-2004; count=5; years=[2000, 2001, 2002, 2003, 2004]
+- Washington Wizards: 2009-2013; count=5; years=[2009, 2010, 2011, 2012, 2013]
+- Washington Wizards: 2019-2024; count=5; years=[2019, 2020, 2022, 2023, 2024]
+
+### Output_Lowest_Win_Streaks.csv
+- Category: Penalty
+- Subject: Lowest regular-season win totals among non-playoff teams
+- Criteria: Lowest regular-season win totals among non-playoff teams: at least 2 consecutive qualifying seasons. Streak results are non-overlapping.
+- Rows: 50
+- Unique teams: 24
+- Interpretation: These teams may qualify for a penalty based on repeatedly being among the league's lowest-performing non-playoff teams.
+
+Qualifying teams and instances:
+- Atlanta Hawks: 1975-1976
+- Brooklyn Nets: 1977-1978
+- Brooklyn Nets: 1987-1988
+- Brooklyn Nets: 2016-2017
+- Charlotte Hornets: 2005-2006
+- Charlotte Hornets: 2012-2013
+- Chicago Bulls: 1999-2000
+- Chicago Bulls: 2001-2002
+- Cleveland Cavaliers: 1971-1972
+- Cleveland Cavaliers: 1982-1983
+- Cleveland Cavaliers: 2019-2020
+- Dallas Mavericks: 1992-1993
+- Detroit Pistons: 1964-1965
+- Detroit Pistons: 1966-1967
+- Detroit Pistons: 1979-1980
+- Detroit Pistons: 2021-2022
+- Detroit Pistons: 2023-2024
+- Golden State Warriors: 1965-1966
+- Golden State Warriors: 2000-2001
+- Houston Rockets: 2021-2022
+- Indiana Pacers: 1983-1984
+- Indiana Pacers: 1985-1986
+- Los Angeles Clippers: 1971-1972
+- Los Angeles Clippers: 1977-1978
+- Los Angeles Clippers: 1987-1988
+- Los Angeles Clippers: 1998-1999
+- Los Angeles Lakers: 2016-2017
+- Memphis Grizzlies: 1996-1997
+- Miami Heat: 1989-1990
+- Minnesota Timberwolves: 1992-1993
+- Minnesota Timberwolves: 1994-1995
+- Minnesota Timberwolves: 2010-2011
+- New York Knicks: 1960-1961
+- New York Knicks: 1962-1963
+- New York Knicks: 1964-1965
+- New York Knicks: 1985-1986
+- Oklahoma City Thunder: 1968-1969
+- Orlando Magic: 2013-2014
+- Orlando Magic: 2021-2022
+- Philadelphia 76ers: 1973-1974
+- Philadelphia 76ers: 2014-2015
+- Phoenix Suns: 2017-2018
+- Portland Trail Blazers: 1971-1972
+- Portland Trail Blazers: 1973-1974
+- Sacramento Kings: 1960-1961
+- Sacramento Kings: 2009-2010
+- Utah Jazz: 1979-1980
+- Washington Wizards: 1962-1963
+- Washington Wizards: 1967-1968
+- Washington Wizards: 2024-2025
+
+### Output_Lowest_Win_Windows.csv
+- Category: Penalty
+- Subject: Lowest regular-season win totals among non-playoff teams
+- Criteria: Lowest regular-season win totals among non-playoff teams: at least 2 qualifying seasons within 3 inclusive years. Window results are non-overlapping.
+- Rows: 56
+- Unique teams: 25
+- Interpretation: These teams may qualify for a penalty based on repeated low-win non-playoff seasons within a broader period.
+
+Qualifying teams and instances:
+- Atlanta Hawks: 1975-1976; count=2; years=[1975, 1976]
+- Brooklyn Nets: 1977-1978; count=2; years=[1977, 1978]
+- Brooklyn Nets: 1987-1988; count=2; years=[1987, 1988]
+- Brooklyn Nets: 2016-2017; count=2; years=[2016, 2017]
+- Charlotte Hornets: 2005-2006; count=2; years=[2005, 2006]
+- Charlotte Hornets: 2012-2013; count=2; years=[2012, 2013]
+- Chicago Bulls: 1999-2000; count=2; years=[1999, 2000]
+- Chicago Bulls: 2001-2002; count=2; years=[2001, 2002]
+- Cleveland Cavaliers: 1971-1972; count=2; years=[1971, 1972]
+- Cleveland Cavaliers: 1982-1983; count=2; years=[1982, 1983]
+- Cleveland Cavaliers: 1984-1986; count=2; years=[1984, 1986]
+- Cleveland Cavaliers: 2011-2013; count=2; years=[2011, 2013]
+- Cleveland Cavaliers: 2019-2020; count=2; years=[2019, 2020]
+- Dallas Mavericks: 1992-1993; count=2; years=[1992, 1993]
+- Detroit Pistons: 1964-1965; count=2; years=[1964, 1965]
+- Detroit Pistons: 1966-1967; count=2; years=[1966, 1967]
+- Detroit Pistons: 1979-1980; count=2; years=[1979, 1980]
+- Detroit Pistons: 2021-2022; count=2; years=[2021, 2022]
+- Detroit Pistons: 2023-2024; count=2; years=[2023, 2024]
+- Golden State Warriors: 1963-1965; count=2; years=[1963, 1965]
+- Golden State Warriors: 2000-2001; count=2; years=[2000, 2001]
+- Houston Rockets: 1968-1970; count=2; years=[1968, 1970]
+- Houston Rockets: 2021-2022; count=2; years=[2021, 2022]
+- Indiana Pacers: 1983-1984; count=2; years=[1983, 1984]
+- Indiana Pacers: 1985-1986; count=2; years=[1985, 1986]
+- Los Angeles Clippers: 1971-1972; count=2; years=[1971, 1972]
+- Los Angeles Clippers: 1977-1978; count=2; years=[1977, 1978]
+- Los Angeles Clippers: 1987-1988; count=2; years=[1987, 1988]
+- Los Angeles Clippers: 1998-1999; count=2; years=[1998, 1999]
+- Los Angeles Lakers: 2016-2017; count=2; years=[2016, 2017]
+- Memphis Grizzlies: 1996-1997; count=2; years=[1996, 1997]
+- Miami Heat: 1989-1990; count=2; years=[1989, 1990]
+- Minnesota Timberwolves: 1992-1993; count=2; years=[1992, 1993]
+- Minnesota Timberwolves: 1994-1995; count=2; years=[1994, 1995]
+- Minnesota Timberwolves: 2008-2010; count=2; years=[2008, 2010]
+- New York Knicks: 1960-1961; count=2; years=[1960, 1961]
+- New York Knicks: 1962-1963; count=2; years=[1962, 1963]
+- New York Knicks: 1964-1965; count=2; years=[1964, 1965]
+- New York Knicks: 1985-1986; count=2; years=[1985, 1986]
+- Oklahoma City Thunder: 1968-1969; count=2; years=[1968, 1969]
+- Orlando Magic: 1990-1992; count=2; years=[1990, 1992]
+- Orlando Magic: 2013-2014; count=2; years=[2013, 2014]
+- Orlando Magic: 2021-2022; count=2; years=[2021, 2022]
+- Philadelphia 76ers: 1973-1974; count=2; years=[1973, 1974]
+- Philadelphia 76ers: 2014-2015; count=2; years=[2014, 2015]
+- Phoenix Suns: 2017-2018; count=2; years=[2017, 2018]
+- Portland Trail Blazers: 1971-1972; count=2; years=[1971, 1972]
+- Portland Trail Blazers: 1973-1974; count=2; years=[1973, 1974]
+- Sacramento Kings: 1960-1961; count=2; years=[1960, 1961]
+- Sacramento Kings: 2009-2010; count=2; years=[2009, 2010]
+- Toronto Raptors: 1996-1998; count=2; years=[1996, 1998]
+- Utah Jazz: 1979-1980; count=2; years=[1979, 1980]
+- Washington Wizards: 1962-1963; count=2; years=[1962, 1963]
+- Washington Wizards: 1967-1968; count=2; years=[1967, 1968]
+- Washington Wizards: 1993-1995; count=2; years=[1993, 1995]
+- Washington Wizards: 2024-2025; count=2; years=[2024, 2025]

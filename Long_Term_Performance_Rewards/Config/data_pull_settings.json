@@ -1,0 +1,12 @@
+{
+  "start_year": 1960,
+  "paths": {
+    "standings": "Data/nba_standings.csv",
+    "playoffs": "Data/nba_playoffs.csv"
+  },
+  "processing": {
+    "standings_completed_only": true,
+    "playoffs_completed_only": true,
+    "request_timeout_seconds": 30
+  }
+}

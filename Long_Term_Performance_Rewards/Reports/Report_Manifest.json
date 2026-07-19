@@ -1,0 +1,202 @@
+{
+  "project": "NBA Long-Term Performance Rewards",
+  "generated_at_utc": "2026-05-25T03:23:11.203721+00:00",
+  "purpose": "Identify NBA teams that may qualify for long-term rewards or penalties based on sustained performance patterns.",
+  "source_files": {
+    "standings": "Data/nba_standings.csv",
+    "playoffs": "Data/nba_playoffs.csv",
+    "team_mapping": "Data/team_mapping.csv",
+    "analysis_config": "Config/analysis_settings.json"
+  },
+  "thresholds": {
+    "playoff_streak_threshold": 8,
+    "playoff_window_threshold": 10,
+    "champ_streak_threshold": 3,
+    "champ_window_threshold": 5,
+    "conference_champ_streak_threshold": 4,
+    "conference_champ_window_threshold": 6,
+    "non_playoff_streak_threshold": 5,
+    "non_playoff_window_threshold": 7,
+    "count_lowest_win_teams": 3,
+    "lowest_win_streak_threshold": 2,
+    "lowest_win_window_threshold": 3
+  },
+  "methodology": {
+    "streak_reports": "Consecutive qualifying seasons are split into non-overlapping streak chunks.",
+    "window_reports": "Qualifying seasons are grouped into non-overlapping windows when the threshold count fits within the configured inclusive year span.",
+    "team_names": "Historical franchise names are normalized using Data/team_mapping.csv before report generation.",
+    "season_alignment": "Reports only use seasons that exist in both standings and playoff source files, preventing incomplete newer standings from being treated as non-playoff seasons."
+  },
+  "reports": [
+    {
+      "file": "Output_Playoff_Streaks.csv",
+      "category": "Reward",
+      "subject": "Playoff appearances",
+      "report_type": "streak",
+      "criteria": "Playoff appearances: at least 8 consecutive qualifying seasons. Streak results are non-overlapping.",
+      "description": "Teams that reached the playoffs in consecutive seasons for the configured streak length.",
+      "interpretation": "These teams may qualify for a long-term performance reward based on sustained playoff participation.",
+      "rows": 37,
+      "unique_teams": 20,
+      "columns": [
+        "Team",
+        "Streak_Begin",
+        "Streak_End"
+      ]
+    },
+    {
+      "file": "Output_Playoff_Windows.csv",
+      "category": "Reward",
+      "subject": "Playoff appearances",
+      "report_type": "window",
+      "criteria": "Playoff appearances: at least 8 qualifying seasons within 10 inclusive years. Window results are non-overlapping.",
+      "description": "Teams that reached the playoffs the configured number of times within the configured year window.",
+      "interpretation": "These teams may qualify for a long-term performance reward based on repeated playoff participation within a broader window.",
+      "rows": 65,
+      "unique_teams": 27,
+      "columns": [
+        "Team",
+        "Window_Start",
+        "Window_End",
+        "Count",
+        "Years_In_Window"
+      ]
+    },
+    {
+      "file": "Output_Championship_Streaks.csv",
+      "category": "Reward",
+      "subject": "NBA championships",
+      "report_type": "streak",
+      "criteria": "NBA championships: at least 3 consecutive qualifying seasons. Streak results are non-overlapping.",
+      "description": "Teams that won NBA championships in consecutive seasons for the configured streak length.",
+      "interpretation": "These teams may qualify for the strongest long-term performance reward based on consecutive championships.",
+      "rows": 5,
+      "unique_teams": 3,
+      "columns": [
+        "Team",
+        "Streak_Begin",
+        "Streak_End"
+      ]
+    },
+    {
+      "file": "Output_Championship_Windows.csv",
+      "category": "Reward",
+      "subject": "NBA championships",
+      "report_type": "window",
+      "criteria": "NBA championships: at least 3 qualifying seasons within 5 inclusive years. Window results are non-overlapping.",
+      "description": "Teams that won the configured number of NBA championships within the configured year window.",
+      "interpretation": "These teams may qualify for a long-term performance reward based on multiple championships in a compact period.",
+      "rows": 9,
+      "unique_teams": 5,
+      "columns": [
+        "Team",
+        "Window_Start",
+        "Window_End",
+        "Count",
+        "Years_In_Window"
+      ]
+    },
+    {
+      "file": "Output_Conference_Championship_Streaks.csv",
+      "category": "Reward",
+      "subject": "Conference championships",
+      "report_type": "streak",
+      "criteria": "Conference championships: at least 4 consecutive qualifying seasons. Streak results are non-overlapping.",
+      "description": "Teams that won conference championships in consecutive seasons for the configured streak length.",
+      "interpretation": "These teams may qualify for a reward based on repeated Finals appearances.",
+      "rows": 6,
+      "unique_teams": 5,
+      "columns": [
+        "Team",
+        "Streak_Begin",
+        "Streak_End"
+      ]
+    },
+    {
+      "file": "Output_Conference_Championship_Windows.csv",
+      "category": "Reward",
+      "subject": "Conference championships",
+      "report_type": "window",
+      "criteria": "Conference championships: at least 4 qualifying seasons within 6 inclusive years. Window results are non-overlapping.",
+      "description": "Teams that won the configured number of conference championships within the configured year window.",
+      "interpretation": "These teams may qualify for a reward based on repeated deep playoff success within a broader period.",
+      "rows": 12,
+      "unique_teams": 6,
+      "columns": [
+        "Team",
+        "Window_Start",
+        "Window_End",
+        "Count",
+        "Years_In_Window"
+      ]
+    },
+    {
+      "file": "Output_Non_Playoff_Streaks.csv",
+      "category": "Penalty",
+      "subject": "Missed playoffs",
+      "report_type": "streak",
+      "criteria": "Missed playoffs: at least 5 consecutive qualifying seasons. Streak results are non-overlapping.",
+      "description": "Teams that missed the playoffs in consecutive seasons for the configured streak length.",
+      "interpretation": "These teams may qualify for a long-term performance penalty based on sustained non-playoff results.",
+      "rows": 58,
+      "unique_teams": 28,
+      "columns": [
+        "Team",
+        "Streak_Begin",
+        "Streak_End"
+      ]
+    },
+    {
+      "file": "Output_Non_Playoff_Windows.csv",
+      "category": "Penalty",
+      "subject": "Missed playoffs",
+      "report_type": "window",
+      "criteria": "Missed playoffs: at least 5 qualifying seasons within 7 inclusive years. Window results are non-overlapping.",
+      "description": "Teams that missed the playoffs the configured number of times within the configured year window.",
+      "interpretation": "These teams may qualify for a penalty based on repeated missed playoffs within a broader period.",
+      "rows": 80,
+      "unique_teams": 30,
+      "columns": [
+        "Team",
+        "Window_Start",
+        "Window_End",
+        "Count",
+        "Years_In_Window"
+      ]
+    },
+    {
+      "file": "Output_Lowest_Win_Streaks.csv",
+      "category": "Penalty",
+      "subject": "Lowest regular-season win totals among non-playoff teams",
+      "report_type": "streak",
+      "criteria": "Lowest regular-season win totals among non-playoff teams: at least 2 consecutive qualifying seasons. Streak results are non-overlapping.",
+      "description": "Teams that finished among the configured number of lowest-win non-playoff teams in consecutive seasons.",
+      "interpretation": "These teams may qualify for a penalty based on repeatedly being among the league's lowest-performing non-playoff teams.",
+      "rows": 50,
+      "unique_teams": 24,
+      "columns": [
+        "Team",
+        "Streak_Begin",
+        "Streak_End"
+      ]
+    },
+    {
+      "file": "Output_Lowest_Win_Windows.csv",
+      "category": "Penalty",
+      "subject": "Lowest regular-season win totals among non-playoff teams",
+      "report_type": "window",
+      "criteria": "Lowest regular-season win totals among non-playoff teams: at least 2 qualifying seasons within 3 inclusive years. Window results are non-overlapping.",
+      "description": "Teams that finished among the configured number of lowest-win non-playoff teams the configured number of times within the configured year window.",
+      "interpretation": "These teams may qualify for a penalty based on repeated low-win non-playoff seasons within a broader period.",
+      "rows": 56,
+      "unique_teams": 25,
+      "columns": [
+        "Team",
+        "Window_Start",
+        "Window_End",
+        "Count",
+        "Years_In_Window"
+      ]
+    }
+  ]
+}
