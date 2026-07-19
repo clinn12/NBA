@@ -1,0 +1,12 @@
+Parameter,Value
+playoff_streak_threshold,8
+playoff_window_threshold,10
+champ_streak_threshold,3
+champ_window_threshold,5
+conference_champ_streak_threshold,4
+conference_champ_window_threshold,6
+non_playoff_streak_threshold,5
+non_playoff_window_threshold,7
+count_lowest_win_teams,3
+lowest_win_streak_threshold,2
+lowest_win_window_threshold,3

@@ -1,0 +1,21 @@
+{
+  "paths": {
+    "standings": "Data/nba_standings.csv",
+    "playoffs": "Data/nba_playoffs.csv",
+    "team_mapping": "Data/team_mapping.csv",
+    "reports_dir": "Reports"
+  },
+  "thresholds": {
+    "playoff_streak": 8,
+    "playoff_window": 10,
+    "championship_streak": 3,
+    "championship_window": 5,
+    "conference_championship_streak": 4,
+    "conference_championship_window": 6,
+    "non_playoff_streak": 5,
+    "non_playoff_window": 7,
+    "lowest_win_team_count": 3,
+    "lowest_win_streak": 2,
+    "lowest_win_window": 3
+  }
+}
