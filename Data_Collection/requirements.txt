@@ -1,0 +1,7 @@
+# Project: NBA Data Collection
+# Purpose: Declare dependencies for official NBA and Basketball Reference
+# retrieval, HTML parsing, and tabular historical publication workflows.
+requests>=2.31,<3
+beautifulsoup4>=4.12,<5
+numpy>=1.26,<3
+pandas>=2.1,<3

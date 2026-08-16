@@ -1,0 +1,85 @@
+{
+  "manifest_version": "historical_league_results_v1",
+  "dataset_family": "historical_league_results",
+  "source": "Basketball Reference",
+  "generated_at_utc": "2026-08-15T19:17:34.653459+00:00",
+  "publication_root": "data/published/historical",
+  "consumer_contract": "Consumers read published artifacts and do not import collection code.",
+  "artifacts": {
+    "standings": {
+      "path": "data/published/historical/nba_standings.csv",
+      "sha256": "435e44bce3625f9e575dab95a19d2e8cc7365b10e20f554352a0d8e9af0f895f",
+      "rows": 1595,
+      "columns": [
+        "Team",
+        "W",
+        "L",
+        "WL_pct",
+        "GB",
+        "PPG",
+        "OPPG",
+        "SRS",
+        "Year",
+        "Conference"
+      ],
+      "first_year": 1960,
+      "last_year": 2026
+    },
+    "playoffs": {
+      "path": "data/published/historical/nba_playoffs.csv",
+      "sha256": "cedfbbbe26ed76bea21ee8c07d8fcd98017a39cd86deb563f7be9cff3db54b8c",
+      "rows": 886,
+      "columns": [
+        "Rk",
+        "Team",
+        "Overall",
+        "Home",
+        "Road",
+        "E",
+        "W",
+        "A",
+        "C",
+        "SE",
+        "NW",
+        "P",
+        "SW",
+        "\u22643",
+        "\u226510",
+        "Apr",
+        "May",
+        "Jun",
+        "Year",
+        "Wins",
+        "Champion",
+        "Conference_Champion",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Jul",
+        "M",
+        "Mar",
+        "E_Wins",
+        "E_Losses",
+        "W_Wins",
+        "W_Losses",
+        "E_Games",
+        "W_Games"
+      ],
+      "first_year": 1960,
+      "last_year": 2025
+    },
+    "franchise_lineage": {
+      "path": "data/published/historical/franchise_lineage.csv",
+      "sha256": "88af839b54dbc887694dbe7eacc0be348106630f9b3b0ae22a34ac519935c6e7",
+      "rows": 25,
+      "columns": [
+        "Source_Team",
+        "Mapped_Team",
+        "Start_Year",
+        "End_Year"
+      ],
+      "first_year": null,
+      "last_year": null
+    }
+  }
+}

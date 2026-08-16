@@ -1,0 +1,18 @@
+{
+  "registry_version": "historical_dataset_registry_v1",
+  "default_historical_version": "historical_enriched_2025_26_regular_season__sha256_e81d3c579c0b",
+  "versions": [
+    {
+      "version_id": "historical_enriched_2025_26_regular_season__sha256_e81d3c579c0b",
+      "status": "current",
+      "formula_version": "historical_enrichment_v2",
+      "note": "Corrected defended-shooting feed identity mapping; QA passed with all critical source components populated."
+    },
+    {
+      "version_id": "historical_enriched_2025_26_regular_season__sha256_45ca04786c97",
+      "status": "superseded_do_not_use",
+      "formula_version": "historical_enrichment_v1",
+      "note": "Preserved for provenance. Alternate NBA identity fields were not joined, leaving defended-shooting components at zero."
+    }
+  ]
+}

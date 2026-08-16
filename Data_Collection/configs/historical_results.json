@@ -1,0 +1,18 @@
+{
+  "dataset_family": "historical_league_results",
+  "source": "Basketball Reference",
+  "start_year": 1960,
+  "paths": {
+    "standings": "data/published/historical/nba_standings.csv",
+    "playoffs": "data/published/historical/nba_playoffs.csv",
+    "franchise_lineage": "data/published/historical/franchise_lineage.csv",
+    "raw_root": "data/raw/basketball_reference",
+    "manifest": "data/manifests/historical_league_results.json"
+  },
+  "processing": {
+    "standings_completed_only": true,
+    "playoffs_completed_only": true,
+    "request_timeout_seconds": 30,
+    "reuse_raw_html": true
+  }
+}

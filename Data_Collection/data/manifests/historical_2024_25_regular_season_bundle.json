@@ -1,0 +1,77 @@
+{
+  "manifest_version": "historical_season_bundle_v1",
+  "season": "2024-25",
+  "season_type": "Regular Season",
+  "created_at_utc": "2026-08-16T00:23:20.244071+00:00",
+  "counts": {
+    "player_game_rows": 26306,
+    "team_game_rows": 2460,
+    "teams": 30,
+    "variability_teams": 30,
+    "pregame_games": 1069,
+    "enrichment_qa_players": 569
+  },
+  "quality": {
+    "pregame_qa": "pass",
+    "enrichment_qa": "pass",
+    "exact_starter_coverage": 0.0,
+    "official_injury_report_games": 0
+  },
+  "artifacts": {
+    "player_game_logs": {
+      "path": "data/raw/player_game_logs_2024-25_regular_season_all.json",
+      "bytes": 18210026,
+      "sha256": "f606f9169cc9314131e9f4226e84e1c321fb69f5e62b1ed3bf59a565d447b476"
+    },
+    "team_game_logs": {
+      "path": "data/raw/team_game_logs_2024-25_regular_season_all.json",
+      "bytes": 1309165,
+      "sha256": "0b5abd93bfa8c2329522c7f8c65a9e0cac72f5dc04b0e5e7ab6dcbb038e55bac"
+    },
+    "historical_enrichment_raw": {
+      "path": "data/raw/historical_enrichment_2024-25_regular_season.json",
+      "bytes": 3121744,
+      "sha256": "ecb10acf37a142200565d465631991b37e7f6996bef238b7eea15032536fd123"
+    },
+    "starter_cache": {
+      "path": "data/raw/game_starters_2024-25_regular_season_all.json",
+      "bytes": 1201,
+      "sha256": "58ed1b5f0b87804e9040d084eba46fb311f9870510d833d0aefa4a1b83604cc1"
+    },
+    "starter_attempt_log": {
+      "path": "data/raw/starter_attempts_2024-25_regular_season.jsonl",
+      "bytes": 1105,
+      "sha256": "200c9ff33262de335cc42d9511ea2bcf6d2216ff7b531112c1f8cbb1f27533f8"
+    },
+    "team_profiles": {
+      "path": "data/published/real_teams_2024-25_regular_season.json",
+      "bytes": 4423270,
+      "sha256": "068eedafc5e32840c93e55f79ac8bc2ad22f767ca49fa1bc61c819d12840610a"
+    },
+    "player_variability": {
+      "path": "data/published/historical_variability_2024-25_regular_season_all.json",
+      "bytes": 8139697,
+      "sha256": "e42b6236b08b4a6dbdd1f21c7728223e3c8a30d7cd8d6ff3cfe2ae2a8345446f"
+    },
+    "pregame_profiles": {
+      "path": "data/published/pregame/pregame_profiles_2024-25_regular_season.json",
+      "bytes": 115839121,
+      "sha256": "42da58efecdb751c6ea599960e3d2e7a0a04f0369e459be264537bf3257865d4"
+    },
+    "pregame_qa": {
+      "path": "data/published/pregame/pregame_profiles_2024-25_regular_season_qa.json",
+      "bytes": 672,
+      "sha256": "2b765230b2652cce15469c300285debfd7d54ff32d9318b34c820e85bc737b2d"
+    },
+    "enrichment_qa_json": {
+      "path": "reports/enrichment_qa_2024-25_regular_season.json",
+      "bytes": 37323,
+      "sha256": "11cddd6d27563186c9ebbef877a4e842f41ed20013827865bb35d0f3b50686e7"
+    },
+    "enrichment_qa_csv": {
+      "path": "reports/enrichment_qa_players_2024-25_regular_season.csv",
+      "bytes": 163602,
+      "sha256": "b86834af0f70b91d31b814fbf017773d1224733a921fd4aac0e4e2cc61d037a6"
+    }
+  }
+}

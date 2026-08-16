@@ -1,0 +1,12 @@
+[
+  {
+    "game_id": "2026-10-20_Knicks_at_Celtics",
+    "home": {"name": "Celtics", "seed": 2},
+    "away": {"name": "Knicks", "seed": 1}
+  },
+  {
+    "game_id": "2026-10-22_Celtics_at_Knicks",
+    "home": {"name": "Knicks", "seed": 1},
+    "away": {"name": "Celtics", "seed": 2}
+  }
+]

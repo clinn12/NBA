@@ -1,0 +1,82 @@
+# NBA workspace ignore policy.
+# Project-specific .gitignore files refine these rules inside each project.
+
+# Python bytecode, caches, coverage, and build products
+**/__pycache__/
+*.py[cod]
+*$py.class
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+**/.tox/
+**/.nox/
+**/.coverage
+**/.coverage.*
+**/htmlcov/
+**/build/
+**/dist/
+**/*.egg-info/
+
+# Local Python environments
+**/.venv/
+**/venv/
+**/env/
+**/ENV/
+
+# Jupyter runtime artifacts
+**/.ipynb_checkpoints/
+**/.virtual_documents/
+
+# Editors, operating systems, and local agent state
+.DS_Store
+Thumbs.db
+Desktop.ini
+**/.idea/
+**/.vscode/
+*.code-workspace
+**/.agents/
+**/.codex/
+
+# Secrets and machine-local configuration
+**/.env
+**/.env.*
+!**/.env.example
+**/.secrets/
+**/credentials*.json
+**/secrets*.json
+
+# Logs, temporary files, and editor backups
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+~$*
+
+# Local databases and serialized model artifacts
+*.db
+*.sqlite
+*.sqlite3
+*.pkl
+*.pickle
+*.joblib
+*.onnx
+*.pt
+*.pth
+
+# Reproducible Data Collection products. Keep configs, schemas, manifests,
+# source code, tests, and documentation under version control.
+Data_Collection/data/raw/**
+Data_Collection/data/published/**
+Data_Collection/data/versions/**
+Data_Collection/reports/**
+
+# Consumer-project run products
+Simulator/outputs/**
+Simulator/reports/**
+Long_Term_Performance_Rewards/Reports/**
+!Long_Term_Performance_Rewards/Reports/README.md
+
+# Superseded local assets are retained on disk but not added to Git.
+**/__Archive__/
