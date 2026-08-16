@@ -1,0 +1,10 @@
+{
+  "manifest_version": "pilot_calibration_games_manifest_v1",
+  "dataset_schema": "pilot_calibration_games_v1",
+  "generated_at_utc": "2026-08-15T19:27:43.905241+00:00",
+  "publication_path": "data/published/calibration/pilot_games_2025-26_regular_season.json",
+  "sha256": "14bcb9133fe8f7ef9ced86fb1059560746d73ac00e316290b36fa2ad9da7507b",
+  "games": 16,
+  "predictive_backtest_eligible": false,
+  "consumer": "NBA Simulator structural calibration harness"
+}

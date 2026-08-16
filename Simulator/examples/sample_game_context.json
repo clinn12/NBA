@@ -1,0 +1,28 @@
+{
+  "game_id": "nyk_vs_bos_example",
+  "dataset_id": "real_teams_2025_26_regular_season",
+  "source_type": "historical",
+  "profile_mode": "historical",
+  "variability_path": "../Data_Collection/data/published/historical_variability_2025-26_regular_season.json",
+  "excluded_players": {
+    "New York Knicks": [],
+    "Boston Celtics": []
+  },
+  "player_overrides": {},
+  "starters": {},
+  "rotation_size": {
+    "New York Knicks": 10,
+    "Boston Celtics": 10
+  },
+  "home_rest_days": 1,
+  "away_rest_days": 1,
+  "home_travel_miles": 0,
+  "away_travel_miles": 0,
+  "home_court_points": 2.0,
+  "enable_profile_sampling": true,
+  "enable_shared_environment": true,
+  "enable_matchup_adjustments": true,
+  "metadata": {
+    "notes": "Example only; add exclusions, starters, or minutes limits for a specific matchup."
+  }
+}

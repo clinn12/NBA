@@ -1,0 +1,56 @@
+{
+  "manifest_version": "historical_dataset_manifest_v1",
+  "version_id": "historical_enriched_2025_26_regular_season__sha256_e81d3c579c0b",
+  "created_at_utc": "2026-07-31T17:35:29.355369+00:00",
+  "source_path": "C:\\Users\\clinn\\Documents\\NBA\\Data_Collection\\data\\published\\real_teams_2025-26_regular_season.json",
+  "snapshot_path": "C:\\Users\\clinn\\Documents\\NBA\\Data_Collection\\data\\versions\\historical_enriched_2025_26_regular_season__sha256_e81d3c579c0b\\real_teams_2025-26_regular_season.json",
+  "sha256": "e81d3c579c0ba8e8513290c2af39623759df0a05c3c4d3cb72c738cc8d6a1e08",
+  "bytes": 560465,
+  "dataset_metadata": {
+    "dataset_id": "historical_enriched_2025_26_regular_season",
+    "source_type": "historical",
+    "default_simulator_input": true,
+    "season": "2025-26",
+    "season_type": "Regular Season",
+    "teams": [
+      "NYK",
+      "SAS",
+      "BOS",
+      "LAL"
+    ],
+    "source": "NBA Stats dashboard endpoints",
+    "pulled_at_utc": "2026-07-31T17:14:43.286387+00:00",
+    "mapping_note": "Raw source fields are retained. Simulator-only fields are calculated by the optional historical enrichment layer without predictive modeling.",
+    "formula_version": "historical_enrichment_v2",
+    "enriched_at_utc": "2026-07-31T17:35:23.666272+00:00",
+    "enriched_fields": [
+      "defense",
+      "switchability",
+      "help_defense",
+      "stamina",
+      "clutch",
+      "rim_pressure",
+      "off_ball_gravity"
+    ],
+    "enrichment_method": "Deterministic league-normalized formulas with sample-size shrinkage; no field-specific predictive models.",
+    "feed_failures": {}
+  },
+  "formula_version": "historical_enrichment_v2",
+  "source_type": "historical",
+  "default_simulator_input": true,
+  "related_source_files": {
+    "C:\\Users\\clinn\\Documents\\NBA\\Data_Collection\\data\\published\\historical_variability_2025-26_regular_season.json": {
+      "sha256": "da3593d95cd9439f8b1d7b28b9a21c6413ec6de0094f65a5f9360d325c88a1e1",
+      "bytes": 1007019
+    },
+    "C:\\Users\\clinn\\Documents\\NBA\\Data_Collection\\data\\raw\\historical_enrichment_2025-26_regular_season.json": {
+      "sha256": "99a394f8f7da14de2bb4a77d9d30f4f3b7cbc4b6802f3dac92eee1a8a3a5600d",
+      "bytes": 3165640
+    },
+    "C:\\Users\\clinn\\Documents\\NBA\\Data_Collection\\data\\raw\\player_game_logs_2025-26_regular_season_nyk_sas_bos_lal.json": {
+      "sha256": "7c73d70ba0cb4048b57270b312e65e7f404d85714097bf006b3b408a3fee2093",
+      "bytes": 2523324
+    }
+  },
+  "immutability_rule": "A different payload always receives a different content-addressed version_id; existing snapshot bytes are never overwritten."
+}

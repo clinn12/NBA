@@ -1,0 +1,6 @@
+{
+  "shot_accuracy_adjustment": -0.02,
+  "three_point_attempt_weight_multiplier": 0.9,
+  "offensive_rebound_probability_multiplier": 1.2,
+  "assist_probability_on_made_fg": 0.62
+}

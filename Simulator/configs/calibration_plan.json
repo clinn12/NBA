@@ -1,0 +1,66 @@
+{
+  "plan_version": "nba_calibration_plan_v1",
+  "evaluation_modes": {
+    "structural_reconstruction": "May use actual players who appeared and completed-season averages; evaluates mechanics and conditional distributions, not pregame forecast skill.",
+    "predictive_backtest": "Requires only information available before tipoff, including a dated profile snapshot and pregame availability. Look-ahead records are rejected."
+  },
+  "ablation_variants": {
+    "averages_only": {
+      "enable_profile_sampling": false,
+      "enable_shared_environment": false,
+      "enable_matchup_adjustments": false
+    },
+    "game_form": {
+      "enable_profile_sampling": true,
+      "enable_shared_environment": false,
+      "enable_matchup_adjustments": false
+    },
+    "full_context": {
+      "enable_profile_sampling": true,
+      "enable_shared_environment": true,
+      "enable_matchup_adjustments": true
+    }
+  },
+  "calibration_stages": [
+    {"order": 1, "name": "pace", "metrics": ["pace"], "parameters": ["average_possession_seconds", "possession_time_sd"]},
+    {"order": 2, "name": "scoring_efficiency", "metrics": ["offensive_rating", "effective_fg_pct"], "parameters": ["shot_accuracy_adjustment", "home_court_points"]},
+    {"order": 3, "name": "shot_mix", "metrics": ["three_attempt_rate"], "parameters": ["three_point_attempt_weight_multiplier", "play_type_weights", "player_three_rate"]},
+    {"order": 4, "name": "turnovers_fouls_free_throws", "metrics": ["turnover_pct", "free_throw_rate"], "parameters": ["shooting_foul_rate", "non_shooting_foul_rate", "offensive_foul_rate"]},
+    {"order": 5, "name": "rebounds", "metrics": ["offensive_rebound_pct"], "parameters": ["offensive_rebound_probability_multiplier", "player_orb_rate", "player_drb_rate", "environment_rebound_shift"]},
+    {"order": 6, "name": "minutes_usage", "metrics": ["player_minutes", "player_usage", "rotation_size"], "parameters": ["rotation_minutes_buffer", "performance_substitution_weight", "performance_swap_threshold"]},
+    {"order": 7, "name": "player_variability", "metrics": ["player_stat_interval_coverage"], "parameters": ["historical_variability_draw_widths"]},
+    {"order": 8, "name": "shared_environment", "metrics": ["within_game_stat_correlations", "total_points_variance"], "parameters": ["environment_draw_widths"]},
+    {"order": 9, "name": "defense_matchups", "metrics": ["opponent_efficiency", "availability_effect"], "parameters": ["defense_weights", "matchup_adjustment_scale"]},
+    {"order": 10, "name": "home_rest_travel", "metrics": ["home_margin", "rest_differential"], "parameters": ["home_court_points", "rest_load", "travel_load"]},
+    {"order": 11, "name": "late_game_blowout", "metrics": ["overtime_rate", "blowout_rate", "late_foul_rate"], "parameters": ["late_game_foul_seconds", "blowout_rotation_rules", "clock_strategy"]}
+  ],
+  "acceptance_thresholds": {
+    "structural_failure_count_max": 0,
+    "simulation_error_count_max": 0,
+    "team_score_mae_max": 12.0,
+    "margin_mae_max": 15.0,
+    "total_points_mae_max": 18.0,
+    "winner_brier_score_max": 0.25,
+    "score_p05_p95_coverage_min": 0.80,
+    "score_p05_p95_coverage_max": 0.98,
+    "score_p25_p75_coverage_min": 0.40,
+    "score_p25_p75_coverage_max": 0.65,
+    "player_stat_p05_p95_coverage_min": 0.75,
+    "player_stat_p05_p95_coverage_max": 0.98,
+    "player_stat_p25_p75_coverage_min": 0.35,
+    "player_stat_p25_p75_coverage_max": 0.70,
+    "metric_absolute_bias_max": {
+      "pace": 3.0,
+      "offensive_rating": 5.0,
+      "effective_fg_pct": 0.035,
+      "three_attempt_rate": 0.04,
+      "free_throw_rate": 0.04,
+      "turnover_pct": 2.5,
+      "offensive_rebound_pct": 4.0,
+      "assist_rate": 0.05,
+      "block_rate": 0.02,
+      "steal_rate": 0.02
+    }
+  },
+  "decision_rule": "All hard structural thresholds must pass. Statistical thresholds are evaluated on a held-out, pregame-valid sample before forecast-ready status is granted. Failed thresholds identify the next calibration stage; they do not justify tuning multiple stages simultaneously."
+}

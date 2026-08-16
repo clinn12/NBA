@@ -60,10 +60,13 @@ secrets*.json
 *.pt
 *.pth
 
-# Immutable generated report runs and the latest-run pointer stay local.
-# Keep the report-folder guide under version control.
-Reports/**
-!Reports/README.md
+# Reproducible simulation and calibration run products
+outputs/**
+reports/**
+
+# Shared datasets belong in Data Collection; active Simulator data files should
+# not become a second source of truth.
+data/**
 
 # Superseded assets remain available locally without expanding repository size.
 **/__Archive__/

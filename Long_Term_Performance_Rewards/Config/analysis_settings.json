@@ -1,8 +1,8 @@
 {
   "paths": {
-    "standings": "Data/nba_standings.csv",
-    "playoffs": "Data/nba_playoffs.csv",
-    "team_mapping": "Data/team_mapping.csv",
+    "standings": "../Data_Collection/data/published/historical/nba_standings.csv",
+    "playoffs": "../Data_Collection/data/published/historical/nba_playoffs.csv",
+    "team_mapping": "../Data_Collection/data/published/historical/franchise_lineage.csv",
     "reports_dir": "Reports"
   },
   "thresholds": {

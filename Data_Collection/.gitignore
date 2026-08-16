@@ -60,10 +60,12 @@ secrets*.json
 *.pt
 *.pth
 
-# Immutable generated report runs and the latest-run pointer stay local.
-# Keep the report-folder guide under version control.
-Reports/**
-!Reports/README.md
+# Reproducible retrieval and publication products. Manifests remain eligible
+# for version control because they describe governed dataset contracts.
+data/raw/**
+data/published/**
+data/versions/**
+reports/**
 
 # Superseded assets remain available locally without expanding repository size.
 **/__Archive__/

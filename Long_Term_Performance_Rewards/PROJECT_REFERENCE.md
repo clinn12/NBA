@@ -1,3 +1,13 @@
+---
+title: NBA Long-Term Performance Rewards Project Reference
+project: NBA Long-Term Performance Rewards
+file_type: project_reference
+status: active
+purpose: Preserve policy decisions, shared-data boundaries, methodology, validation, and open work.
+usage: Review before changing data inputs, franchise lineage, thresholds, or report logic.
+last_updated: 2026-08-16
+---
+
 # Project Reference
 
 ## Project Purpose
@@ -11,33 +21,36 @@ The central idea is that the NBA currently has limited long-term punishment for 
 
 ## Current Folder Structure
 
-- `Config/` - Separate pipeline, data-pull, and analysis settings
-- `Data/` - Source CSV files and franchise mapping rules
-- `Notebooks/` - Notebook workbench for scraping and analysis
+- `Config/` - Analysis input paths and policy thresholds
+- `__Archive__/Data/` - Former local source data retained only for provenance
+- `Notebooks/` - Reward-analysis workbench; data-pull notebooks moved upstream
 - `Reports/` - Generated output reports and AI-readable metadata
-- `Utils/pull_nba_standings.py` and `Utils/pull_nba_playoffs.py` - Repeatable scripts for refreshing Basketball Reference source data
-- `Utils/generate_reports.py` - Repeatable script for generating reward and penalty reports
-- `Utils/run_pipeline.py` - Orchestrates data-pull and analysis stages
+- `Scripts/generate_reports.py` - Repeatable script for generating reward and penalty reports
+- `Scripts/run_pipeline.py` - Analysis-only report orchestration
+- `Tests/` - Offline enforcement of the Data Collection consumer boundary
 
 ## Core Data Files
 
-- `Data/nba_standings.csv` - Regular season standings data
-- `Data/nba_playoffs.csv` - Playoff performance data
-- `Data/team_mapping.csv` - Franchise name normalization rules
+- `..\Data_Collection\data\published\historical\nba_standings.csv` - Regular-season standings
+- `..\Data_Collection\data\published\historical\nba_playoffs.csv` - Playoff performance
+- `..\Data_Collection\data\published\historical\franchise_lineage.csv` - Franchise normalization rules
 
 The data currently covers NBA seasons from `1960` through `2025`.
 
 ## Important Project Decisions
 
-1. Notebooks remain as the exploratory workbench.
-2. Repeatable pipeline logic lives in `Utils/` scripts, with pull scripts and analysis scripts kept separate by file responsibility.
-3. Configuration is separated by responsibility: `Config/data_pull_settings.json` for scraping and `Config/analysis_settings.json` for report generation.
-4. Franchise mapping was externalized to `Data/team_mapping.csv`.
+1. Users may run the analysis through either `Scripts/run_pipeline.py` or
+   `Notebooks/NBA_Playoffs_and_Champions.ipynb`; both call the same shared report
+   generator.
+2. Repeatable policy-analysis logic lives in `Scripts/`; shared retrieval and dataset creation live exclusively in `Data_Collection`.
+3. `Config/analysis_settings.json` contains consumer paths and report thresholds. Collection configuration is upstream.
+4. Franchise mapping is a governed shared publication named `franchise_lineage.csv`.
 5. Reports are written to `Reports/`.
-6. Report outputs should be understandable by both humans and AI agents.
-7. The project uses non-overlapping streak/window logic so a qualifying period is not repeatedly counted.
-8. Team names are normalized before identifying playoff, non-playoff, low-win, championship, and conference championship cohorts.
-9. Documentation should explain what is happening, why it matters, and why the approach was chosen.
+6. Every report execution writes to an immutable `run_YYYY_MM_DD_HHMMSS[_label]` folder using local time. `latest_run.json` is updated only after successful completion.
+7. Report outputs should be understandable by both humans and AI agents.
+8. The project uses non-overlapping streak/window logic so a qualifying period is not repeatedly counted.
+9. Team names are normalized before identifying playoff, non-playoff, low-win, championship, and conference championship cohorts.
+10. Documentation should explain what is happening, why it matters, and why the approach was chosen.
 
 ## Script Entry Points
 
@@ -47,49 +60,44 @@ Use the Anaconda Python found on this machine:
 C:\Users\clinn\anaconda3\python.exe
 ```
 
-Generate reports without scraping:
+Generate reports from the current governed publications:
 
 ```powershell
-C:\Users\clinn\anaconda3\python.exe Utils\generate_reports.py
+C:\Users\clinn\anaconda3\python.exe Scripts\generate_reports.py
 ```
 
-Run the full pipeline:
+Run the analysis-only pipeline:
 
 ```powershell
-C:\Users\clinn\anaconda3\python.exe Utils\run_pipeline.py
+C:\Users\clinn\anaconda3\python.exe Scripts\run_pipeline.py
 ```
 
-Optional pipeline flags:
+Alternatively, open `Notebooks/NBA_Playoffs_and_Champions.ipynb` and run it from
+top to bottom. Its editable controls are `config_path`, `run_name`, and the
+optional `report_name` used for preview. The notebook displays effective inputs
+and thresholds before execution, then shows the completed run directory and row
+counts. It must remain a thin interface over `Scripts/generate_reports.py`.
+
+Optionally label a run:
 
 ```powershell
-C:\Users\clinn\anaconda3\python.exe Utils\run_pipeline.py --skip-standings
-C:\Users\clinn\anaconda3\python.exe Utils\run_pipeline.py --skip-playoffs
-C:\Users\clinn\anaconda3\python.exe Utils\run_pipeline.py --skip-reports
+C:\Users\clinn\anaconda3\python.exe Scripts\run_pipeline.py --run-name baseline
+```
+
+Refresh shared source publications from the sibling project:
+
+```powershell
+cd C:\Users\clinn\Documents\NBA\Data_Collection
+python scripts\pull_historical_results.py
 ```
 
 ## Config Reference
 
-Primary config file:
+Primary analysis config file:
 
 ```text
-Config/settings.json
-```
-
-`Config/settings.json` is now an orchestration file. It points to:
-
-```text
-Config/data_pull_settings.json
 Config/analysis_settings.json
 ```
-
-Data-pull settings:
-
-- `start_year`: first season to process
-- `paths.standings`: standings CSV path
-- `paths.playoffs`: playoffs CSV path
-- `processing.standings_completed_only`: whether standings pulls should avoid active incomplete seasons
-- `processing.playoffs_completed_only`: whether playoff pulls should avoid incomplete playoff seasons
-- `processing.request_timeout_seconds`: web request timeout
 
 Analysis settings:
 
@@ -130,16 +138,27 @@ Primary output reports:
 
 AI-readable report metadata:
 
-- `Reports/Report_Manifest.json` - Machine-readable report inventory, methodology, criteria, source files, thresholds
-- `Reports/Report_Data_Dictionary.csv` - Column definitions
-- `Reports/README_For_AI_Agents.md` - Plain-language guide to interpreting reports
-- `Reports/Report_Parameters.csv` - Threshold values used for the report run
+- `Reports/<run_id>/Report_Manifest.json` - Machine-readable report inventory, methodology, criteria, source files, thresholds, timestamps, and hashes
+- `Reports/<run_id>/Report_Data_Dictionary.csv` - Column definitions
+- `Reports/<run_id>/README_For_AI_Agents.md` - Plain-language guide to interpreting reports
+- `Reports/<run_id>/Report_Parameters.csv` - Threshold values used for the report run
+
+These files now live together inside each timestamped run folder. `Reports/latest_run.json` provides the current run ID and relative manifest path without duplicating the report files.
+
+## Report Run Governance
+
+- Folder pattern: `run_YYYY_MM_DD_HHMMSS` with an optional sanitized label.
+- Time basis: the machine's local Eastern time; manifests also store UTC, timezone name, and offset.
+- Collision behavior: append `_02`, `_03`, and so on rather than overwrite.
+- Completion behavior: update `latest_run.json` only after all report and metadata files have been written.
+- Reproducibility: retain source-data, analysis-config, and generator SHA-256 hashes in every run manifest.
+- Historical flat files from before this convention are preserved beneath `Reports/__Archive__/`.
 
 ## Report Logic
 
 Season alignment:
 
-- Reports only use seasons that exist in both `Data/nba_standings.csv` and `Data/nba_playoffs.csv`.
+- Reports only use seasons that exist in both published standings and playoff datasets.
 - This prevents newly pulled standings seasons from being incorrectly treated as non-playoff seasons before playoff data is complete.
 
 Streak reports:
@@ -163,10 +182,10 @@ Lowest-win reports:
 
 ## Franchise Mapping Notes
 
-Franchise mapping is intentionally explicit and editable in:
+Franchise mapping is intentionally explicit and governed upstream in:
 
 ```text
-Data/team_mapping.csv
+..\Data_Collection\data\published\historical\franchise_lineage.csv
 ```
 
 Important current choices:
@@ -182,9 +201,9 @@ These are business-rule choices, not universal truths. Revisit them if the proje
 
 ## Known Caveats
 
-- Basketball Reference page structure can change, so scraper validation is important.
-- `nba_playoffs.csv` still contains some historical mojibake column names from earlier pulls, such as encoded less-than/greater-than symbols. The core report logic does not rely on those columns.
-- The project has scripts but no formal test suite yet.
+- Basketball Reference page structure can change, so upstream Data Collection parser validation is important.
+- `nba_playoffs.csv` still contains some historical mojibake column names from earlier pulls, such as encoded less-than/greater-than symbols. The core report logic does not rely on those columns; cleanup must occur as a versioned upstream publication change.
+- Offline boundary tests now verify source paths, prohibit active local shared datasets/pullers, and compare published bytes with the archived migration sources.
 - Git was not available in the original shell session.
 - Python was found at `C:\Users\clinn\anaconda3\python.exe`, but plain `python` was not on PATH in the shell used by Codex.
 
@@ -221,8 +240,51 @@ def example(...):
 
 ## Good Next Steps
 
-- Run `Utils/generate_reports.py` with Anaconda Python and confirm report regeneration.
-- Run `Utils/run_pipeline.py --skip-standings --skip-playoffs` as a safe report-only pipeline test.
+- Run `Scripts/generate_reports.py` with Anaconda Python and confirm report regeneration.
+- Run `Scripts/run_pipeline.py` as the analysis-only pipeline test.
 - Consider adding lightweight tests for streak/window edge cases.
-- Keep notebooks as thin wrappers around `Utils/` scripts so notebook and script logic cannot drift.
+- Keep the reward-analysis notebook as a thin wrapper around `Scripts/generate_reports.py` so notebook and script logic cannot drift.
+
+## 2026-08-16 Folder Alignment
+
+- Renamed the active Python package and command folder from `Utils` to `Scripts`.
+- Moved the former `Data` folder beneath the root `__Archive__` because all active shared inputs are published by `Data_Collection`.
+- Updated active documentation, notebook imports, tests, and commands to reflect the current folder names without changing report methodology.
+
+## 2026-08-16 Timestamped Report Runs
+
+- Replaced flat, overwriting report output with immutable `Reports/run_YYYY_MM_DD_HHMMSS[_label]/` folders.
+- Added collision-safe suffixes, optional `--run-name`, source/config/generator hashes, local and UTC timestamps, and an atomic `Reports/latest_run.json` pointer.
+- Preserved the former flat report files in a dated archive and verified the first structured run reproduced all ten analytical CSVs byte-for-byte.
 - Keep `requirements.txt` updated if new Python packages are added.
+
+## 2026-08-16 Notebook Entry-Point Cleanup
+
+- Reduced the active rewards notebook from 25 historical/placeholder cells to a
+  concise interactive workflow.
+- Removed obsolete loading, cleaning, function-definition, and CSV-saving
+  sections whose logic already lives in `Scripts/generate_reports.py`.
+- Added robust project-root discovery, visible configuration review, optional
+  run labeling, completed-run details, report row counts, and an optional report
+  preview.
+- Kept notebook outputs and execution counts empty in source control so the file
+  opens cleanly and does not present stale results as current.
+
+## 2026-08-16 Git Ignore Policy
+
+- Generated `Reports/` contents and `latest_run.json` remain local and are not
+  added to Git; `Reports/README.md` remains eligible for version control.
+- Python/Jupyter caches, local environments, coverage/build files, editor and
+  agent state, logs, temporary files, local databases, serialized models, and
+  secrets are ignored.
+- `__Archive__` contents remain retained locally but are excluded from Git.
+- Source code, active notebooks, configuration, documentation, and tests remain
+  eligible for version control.
+
+## 2026-08-15 Data Migration
+
+- Published the exact standings, playoff, and franchise-lineage inputs under the sibling Data Collection contract with SHA-256 manifest coverage.
+- Moved the two retrieval scripts, their notebook wrappers, and collection settings upstream.
+- Changed this project to consume only `Data_Collection/data/published/historical` inputs.
+- Archived superseded local data, pullers, notebooks, and configurations without deleting them.
+- Regenerated all ten analytical CSV reports and verified they were byte-for-byte identical to the preserved pre-migration baseline.
